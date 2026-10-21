@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SALO - Software engineer, teacher, builder</title>
+<meta name="description" content="Courses and custom software development from SALO, a 30-year-old software engineer.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧑‍💻</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#000;--fg:#f5f5f7;--mut:#9b9bab;--line:rgba(255,255,255,.1);--card:rgba(255,255,255,.04);--v:#7c5cff;--s:#38bdf8;--p:#ff5d8f;
+--d:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;--b:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;--m:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:var(--bg);color:var(--fg);font:400 17px/1.6 var(--b);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--s);outline-offset:3px;border-radius:10px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--d);line-height:1.05;letter-spacing:-.025em}
+h1{font-size:clamp(2.8rem,8.5vw,6.2rem);font-weight:800}
+h2{font-size:clamp(2rem,4.6vw,3.2rem);font-weight:700}
+h3{font-size:1.4rem;font-weight:700;letter-spacing:-.01em}
+p.lead{color:var(--mut);font-size:1.15rem;max-width:34em}
+.btn{display:inline-flex;align-items:center;gap:.5em;padding:.85em 1.5em;border-radius:999px;font:600 1rem var(--b);border:1px solid var(--line);background:var(--card);color:var(--fg);cursor:pointer;transition:transform .2s,background .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.09)}
+.btn.main{background:#fff;color:#000;border-color:#fff}
+.btn.main:hover{background:#fff;box-shadow:0 8px 40px rgba(124,92,255,.55)}
+
+/* nav */
+nav{position:fixed;inset:0 0 auto;z-index:50;padding-top:env(safe-area-inset-top,0)}
+nav .in{display:flex;align-items:center;justify-content:space-between;height:68px;margin:12px auto 0;max-width:1120px;padding:0 14px 0 20px;border-radius:999px;border:1px solid var(--line);background:rgba(0,0,0,.55);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);width:calc(100% - 32px)}
+.logo{font:800 1.25rem var(--d)}
+.links{display:flex;gap:26px;color:var(--mut);font-weight:500;font-size:.95rem}
+.links a:hover{color:#fff}
+@media(max-width:760px){.links{display:none}}
+
+.r{display:flex;align-items:center;gap:10px}
+.lang{display:flex;border:1px solid var(--line);border-radius:99px;padding:3px}
+.lang button{background:none;border:0;color:var(--mut);font:600 .85rem var(--b);padding:.45em .85em;border-radius:99px;cursor:pointer;transition:background .2s,color .2s}
+.lang button:hover{color:#fff}
+.lang button[aria-pressed=true]{background:#fff;color:#000}
+html[lang=ru]{--d:"Onest","Trebuchet MS",system-ui,sans-serif;--b:"Onest",system-ui,-apple-system,"Segoe UI",sans-serif}
+html[lang=ru] h1{font-size:clamp(2.3rem,7vw,5rem);max-width:12em}
+html[lang=ru] h2{font-size:clamp(1.8rem,4.2vw,2.9rem)}
+@media(max-width:480px){nav .btn{padding:.7em 1em;font-size:.9rem}}
+/* hero */
+.hero{position:relative;padding:170px 0 90px;text-align:center;overflow:hidden}
+.bg{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;will-change:transform}
+.b1{width:560px;height:560px;background:var(--v);left:-8%;top:-12%;animation:drift 14s ease-in-out infinite alternate}
+.b2{width:480px;height:480px;background:var(--s);right:-6%;top:6%;opacity:.4;animation:drift 18s ease-in-out infinite alternate-reverse}
+.b3{width:420px;height:420px;background:var(--p);left:38%;top:34%;opacity:.28;animation:drift 16s ease-in-out infinite alternate}
+@keyframes drift{to{translate:60px 40px}}
+.wave{position:absolute;left:0;bottom:0;width:200%;height:240px;opacity:.5;animation:slide 22s linear infinite}
+@keyframes slide{to{transform:translateX(-50%)}}
+.fade{position:absolute;inset:auto 0 0;height:220px;background:linear-gradient(transparent,#000)}
+.hero h1{max-width:11em;margin:0 auto 22px;animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
+.hero p.lead{margin:0 auto 34px;animation:rise .9s .12s cubic-bezier(.2,.8,.2,1) both}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:rise .9s .24s cubic-bezier(.2,.8,.2,1) both}
+.fine{margin-top:16px;font-size:.85rem;color:var(--mut);animation:rise .9s .3s both}
+@keyframes rise{from{opacity:0;transform:translateY(28px)}}
+
+/* app window */
+.stage{perspective:1400px;margin-top:70px}
+.win{max-width:860px;margin:0 auto;text-align:left;border-radius:18px;border:1px solid var(--line);background:rgba(12,12,18,.85);backdrop-filter:blur(10px);box-shadow:0 40px 120px rgba(124,92,255,.35);transition:transform .15s ease-out;transform-style:preserve-3d;overflow:hidden}
+.bar{display:flex;gap:8px;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line)}
+.bar i{width:12px;height:12px;border-radius:50%;background:#ff5f57}.bar i:nth-child(2){background:#febc2e}.bar i:nth-child(3){background:#28c840}
+.bar span{margin-left:12px;font:.8rem var(--m);color:var(--mut)}
+pre{font:400 clamp(.78rem,2vw,1rem)/1.9 var(--m);padding:22px 24px;overflow-x:auto}
+pre div{opacity:0;animation:line .5s forwards}
+@keyframes line{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:none}}
+.k{color:#c4a8ff}.s{color:#7ee0a5}.n{color:#ffb86b}.c{color:#6d6d80}.f{color:#6cc7ff}
+.cur{display:inline-block;width:.6em;height:1.1em;background:var(--s);vertical-align:text-bottom;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid var(--line);padding:46px 0;text-align:center;gap:20px}
+.stats b{display:block;font:800 clamp(2rem,5vw,3.2rem)/1 var(--d)}
+.stats span{color:var(--mut);font-size:.95rem}
+@media(max-width:700px){.stats{grid-template-columns:1fr 1fr}}
+.marq{overflow:hidden;padding:34px 0;mask-image:linear-gradient(90deg,transparent,#000 15%,#000 85%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 15%,#000 85%,transparent)}
+.marq div{display:flex;gap:44px;width:max-content;animation:slide 30s linear infinite;font:700 1.5rem var(--d);color:#4b4b5c}
+.marq:hover div{animation-play-state:paused}
+
+section{padding:110px 0}
+.head{margin-bottom:54px}.head h2{margin-bottom:14px}
+
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+.card{position:relative;padding:30px;border-radius:24px;border:1px solid var(--line);background:var(--card);display:flex;flex-direction:column;gap:14px;overflow:hidden}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(360px circle at var(--x,50%) var(--y,0),rgba(124,92,255,.22),transparent 60%);opacity:0;transition:opacity .3s}
+.card:hover::before{opacity:1}
+.card>*{position:relative}
+.card.hot{border-color:rgba(124,92,255,.7);box-shadow:0 0 0 1px rgba(124,92,255,.4),0 20px 80px rgba(124,92,255,.25)}
+.tag{align-self:flex-start;font-size:.8rem;font-weight:600;padding:.25em .8em;border-radius:99px;background:linear-gradient(90deg,var(--v),var(--p));color:#fff}
+.price{font:800 2.6rem/1 var(--d)}.price small{font:500 1rem var(--b);color:var(--mut)}
+.card p{color:var(--mut);font-size:.98rem}
+ul.ck{list-style:none;padding:0;display:grid;gap:9px;margin:6px 0 10px;font-size:.96rem}
+ul.ck li::before{content:"";display:inline-block;width:.9em;height:.5em;border:solid var(--s);border-width:0 0 2.5px 2.5px;transform:rotate(-45deg) translateY(-.2em);margin-right:.8em}
+.card .btn{margin-top:auto;justify-content:center}
+
+/* split */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+@media(max-width:900px){.split{grid-template-columns:1fr;gap:36px}}
+.split h2{margin-bottom:16px}.split ul.ck{margin:24px 0}
+.visual{position:relative;aspect-ratio:1/1;border-radius:28px;border:1px solid var(--line);background:radial-gradient(circle at 30% 20%,rgba(124,92,255,.35),transparent 55%),radial-gradient(circle at 80% 80%,rgba(56,189,248,.3),transparent 55%),#07070b;overflow:hidden}
+.chip{position:absolute;padding:.7em 1.1em;border-radius:16px;border:1px solid var(--line);background:rgba(10,10,16,.9);font:500 .9rem var(--m);box-shadow:0 12px 40px rgba(0,0,0,.6);white-space:nowrap}
+.chip em{font-style:normal;color:#7ee0a5}
+
+/* tip */
+.tip{text-align:center;border-radius:36px;border:1px solid var(--line);padding:80px 24px;background:radial-gradient(ellipse at 50% 0,rgba(255,93,143,.22),transparent 60%),var(--card)}
+.tip p.lead{margin:14px auto 34px}
+.amts{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.amts .btn{font:800 1.5rem var(--d);padding:.7em 1.8em}
+.amts .btn:hover{background:#fff;color:#000}
+
+/* faq */
+.faq{max-width:760px;margin:0 auto}
+details{border-bottom:1px solid var(--line);padding:22px 0}
+summary{cursor:pointer;font:700 1.2rem var(--d);list-style:none;display:flex;justify-content:space-between;gap:20px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:1.6rem;line-height:1;transition:transform .25s;color:var(--s)}
+details[open] summary::after{transform:rotate(45deg)}
+details p{color:var(--mut);margin-top:12px}
+
+footer{border-top:1px solid var(--line);padding:50px 0 calc(40px + env(safe-area-inset-bottom,0));color:var(--mut);font-size:.92rem}
+footer .row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer .row div{display:flex;gap:22px;flex-wrap:wrap}
+footer a:hover{color:#fff}
+.pop{position:fixed;z-index:99;pointer-events:none;font-size:1.6rem;animation:pop 1.2s ease-out forwards}
+@keyframes pop{to{transform:translate(var(--dx),var(--dy)) rotate(var(--r));opacity:0}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<nav><div class="in">
+  <a class="logo" href="#top">SALO</a>
+  <div class="links"><a href="#courses">Courses</a><a href="#build">Build with me</a><a href="#support">Support</a><a href="#faq">FAQ</a></div>
+  <div class="r"><div class="lang" role="group" aria-label="Language"><button data-l="en" aria-pressed="true">EN</button><button data-l="ru" aria-pressed="false">RU</button></div><a class="btn main" data-mail href="#">Email me</a></div>
+</div></nav>
+
+<header class="hero" id="top">
+  <div class="bg" aria-hidden="true">
+    <div class="blob b1" data-p=".18"></div><div class="blob b2" data-p=".1"></div><div class="blob b3" data-p=".28"></div>
+    <svg class="wave" viewBox="0 0 2400 240" preserveAspectRatio="none"><defs><linearGradient id="g"><stop offset="0" stop-color="#7c5cff"/><stop offset=".5" stop-color="#38bdf8"/><stop offset="1" stop-color="#ff5d8f"/></linearGradient></defs><path fill="none" stroke="url(#g)" stroke-width="2" d="M0 120 Q150 40 300 120T600 120T900 120T1200 120T1500 120T1800 120T2100 120T2400 120"/><path fill="none" stroke="url(#g)" stroke-width="2" opacity=".5" d="M0 150 Q150 70 300 150T600 150T900 150T1200 150T1500 150T1800 150T2100 150T2400 150"/><path fill="none" stroke="url(#g)" stroke-width="2" opacity=".25" d="M0 180 Q150 100 300 180T600 180T900 180T1200 180T1500 180T1800 180T2100 180T2400 180"/></svg>
+    <div class="fade"></div>
+  </div>
+  <div class="wrap">
+    <h1>Learn to code. Ship real software.</h1>
+    <p class="lead">I'm SALO, a software engineer. I teach practical programming courses and build custom software for people with ideas.</p>
+    <div class="cta"><a class="btn main" href="#courses">Browse courses</a><a class="btn" data-mail href="#">Hire me for a project</a></div>
+    <p class="fine">Based on real projects, not slide decks.</p>
+    <div class="stage"><div class="win" id="win">
+      <div class="bar"><i></i><i></i><i></i><span>salo.ts</span></div>
+<pre><div style="animation-delay:.6s"><span class="k">const</span> salo = {</div><div style="animation-delay:.9s">  name: <span class="s">"SALO"</span>,</div><div style="animation-delay:1.2s">  age: <span class="n">30</span>,</div><div style="animation-delay:1.5s">  role: <span class="s">"Software Engineer"</span>,</div><div style="animation-delay:1.8s">  teaches: [<span class="s">"web"</span>, <span class="s">"backend"</span>, <span class="s">"career"</span>],</div><div style="animation-delay:2.1s">  open_to_work: <span class="k">true</span>,</div><div style="animation-delay:2.4s">};</div><div style="animation-delay:2.7s"> </div><div style="animation-delay:3s"><span class="c">// your turn</span></div><div style="animation-delay:3.3s">salo.<span class="f">ship</span>(<span class="s">"your idea"</span>);<span class="cur"></span></div></pre>
+    </div></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="stats">
+    <div><b>30</b><span>years young</span></div>
+    <div><b>3</b><span>course tracks</span></div>
+    <div><b>&lt;24h</b><span>email reply time</span></div>
+    <div><b>24/7</b><span>coffee uptime</span></div>
+  </div>
+  <div class="marq" aria-hidden="true"><div><span>JavaScript</span><span>TypeScript</span><span>React</span><span>Node.js</span><span>Python</span><span>SQL</span><span>Git</span><span>Docker</span><span>APIs</span><span>JavaScript</span><span>TypeScript</span><span>React</span><span>Node.js</span><span>Python</span><span>SQL</span><span>Git</span><span>Docker</span><span>APIs</span></div></div>
+</div>
+
+<section id="courses"><div class="wrap">
+  <div class="head"><h2>Courses that get you building.</h2><p class="lead">Pick a track, follow along with real projects, and finish with something you can show.</p></div>
+  <div class="grid">
+    <article class="card"><h3>Web foundations</h3><div class="price">$49 <small>one-time</small></div><p>HTML, CSS, and JavaScript from zero to a deployed site.</p>
+      <ul class="ck"><li>Video lessons</li><li>Hands-on projects</li><li>Lifetime access</li><li>Community Q&amp;A</li></ul>
+      <a class="btn" data-mail data-sub="Course: Web foundations" href="#">Enroll by email</a></article>
+    <article class="card hot"><span class="tag">Most popular</span><h3>Full-stack builder</h3><div class="price">$149 <small>one-time</small></div><p>Build and ship a complete app: frontend, backend, database, deployment.</p>
+      <ul class="ck"><li>Everything in Web foundations</li><li>Node.js, APIs, SQL</li><li>Code reviews from me</li><li>Portfolio-ready capstone</li></ul>
+      <a class="btn main" data-mail data-sub="Course: Full-stack builder" href="#">Enroll by email</a></article>
+    <article class="card"><h3>1-on-1 mentoring</h3><div class="price">$60 <small>per hour</small></div><p>Live sessions on your code, your career, or your interview prep.</p>
+      <ul class="ck"><li>Personal learning plan</li><li>Live code review</li><li>Interview practice</li><li>Flexible schedule</li></ul>
+      <a class="btn" data-mail data-sub="Mentoring session" href="#">Book a session</a></article>
+  </div>
+</div></section>
+
+<section id="build"><div class="wrap split">
+  <div>
+    <h2>Got an idea? Let's build it.</h2>
+    <p class="lead">I design, build, and ship custom software: websites, web apps, internal tools, and APIs. You get clean code you own and a person who answers your messages.</p>
+    <ul class="ck"><li>Websites and web apps</li><li>Automation and internal tools</li><li>APIs and backends</li><li>Fixes, audits, and rescue jobs</li></ul>
+    <a class="btn main" data-mail data-sub="Project inquiry" href="#">Tell me about your project</a>
+  </div>
+  <div class="visual" id="vis" aria-hidden="true">
+    <div class="chip" data-p="-.05" style="left:8%;top:12%">git commit -m <em>"it works"</em></div>
+    <div class="chip" data-p=".07" style="right:6%;top:30%">build passed <em>✓</em></div>
+    <div class="chip" data-p="-.09" style="left:14%;top:52%">deploy --prod <em>done</em></div>
+    <div class="chip" data-p=".05" style="right:10%;bottom:14%">0 bugs <em>(for now)</em></div>
+  </div>
+</div></section>
+
+<section id="support"><div class="wrap"><div class="tip">
+  <h2>Enjoying the free stuff?</h2>
+  <p class="lead">Buy me a coffee, a pizza, or a new keyboard. Every bit funds more lessons and open projects.</p>
+  <div class="amts">
+    <a class="btn" data-pay="5" href="#" target="_blank" rel="noopener">$5</a>
+    <a class="btn" data-pay="10" href="#" target="_blank" rel="noopener">$10</a>
+    <a class="btn" data-pay="100" href="#" target="_blank" rel="noopener">$100</a>
+  </div>
+</div></div></section>
+
+<section id="faq"><div class="wrap">
+  <div class="head" style="text-align:center"><h2>Questions, answered.</h2></div>
+  <div class="faq">
+    <details><summary>Do I need experience to start?</summary><p>No. Web foundations starts from zero. If you already code, jump to Full-stack builder.</p></details>
+    <details><summary>How do I enroll or pay?</summary><p>Click Enroll, send me the pre-filled email, and I'll reply with a secure payment link and course access.</p></details>
+    <details><summary>Can you build my project?</summary><p>Yes. Send a short description, your budget, and your timeline. I'll reply with questions and an estimate.</p></details>
+    <details><summary>Do I own the code?</summary><p>Yes. Custom work is delivered with full source code and ownership.</p></details>
+  </div>
+</div></section>
+
+<footer><div class="wrap row">
+  <span>© <span id="yr"></span> SALO. Built by hand.</span>
+  <div><a href="#courses">Courses</a><a href="#build">Build with me</a><a data-mail href="#">Email</a></div>
+</div></footer>
+
+<script>
+/* ===== EDIT THESE ===== */
+const CONFIG = {
+  email: "salo@example.com",
+  pay: { 5: "https://paypal.me/YOURNAME/5", 10: "https://paypal.me/YOURNAME/10", 100: "https://paypal.me/YOURNAME/100" }
+};
+/* ====================== */
+document.getElementById("yr").textContent = new Date().getFullYear();
+/* ===== Language: English is the default, Russian is the alternative ===== */
+const RU = {
+"Courses":"Курсы","Build with me":"Разработка","Support":"Поддержать","FAQ":"Вопросы","Email me":"Написать мне","Email":"Почта",
+"Learn to code. Ship real software.":"Учись программировать. Создавай настоящий софт.",
+"I'm SALO, a software engineer. I teach practical programming courses and build custom software for people with ideas.":"Я SALO, инженер-программист. Веду практические курсы по программированию и разрабатываю софт на заказ для людей с идеями.",
+"Browse courses":"Смотреть курсы","Hire me for a project":"Нанять меня на проект","Based on real projects, not slide decks.":"Только реальные проекты, а не слайды.",
+"years young":"лет, и всё впереди","course tracks":"направления курсов","email reply time":"время ответа на почту","coffee uptime":"кофе без перерывов",
+"Courses that get you building.":"Курсы, после которых вы сможете создавать.",
+"Pick a track, follow along with real projects, and finish with something you can show.":"Выберите направление, делайте реальные проекты и закончите работой, которую не стыдно показать.",
+"Web foundations":"Основы веба","one-time":"разовый платёж","per hour":"в час",
+"HTML, CSS, and JavaScript from zero to a deployed site.":"HTML, CSS и JavaScript с нуля до опубликованного сайта.",
+"Video lessons":"Видеоуроки","Hands-on projects":"Практические проекты","Lifetime access":"Доступ навсегда","Community Q&A":"Вопросы и ответы в сообществе","Enroll by email":"Записаться по почте",
+"Most popular":"Самый популярный","Full-stack builder":"Фулстек-разработчик",
+"Build and ship a complete app: frontend, backend, database, deployment.":"Создайте и запустите полноценное приложение: фронтенд, бэкенд, база данных, деплой.",
+"Everything in Web foundations":"Всё из «Основ веба»","Node.js, APIs, SQL":"Node.js, API, SQL","Code reviews from me":"Ревью кода от меня","Portfolio-ready capstone":"Итоговый проект для портфолио",
+"1-on-1 mentoring":"Индивидуальное наставничество","Live sessions on your code, your career, or your interview prep.":"Живые занятия по вашему коду, карьере или подготовке к собеседованию.",
+"Personal learning plan":"Личный план обучения","Live code review":"Живое ревью кода","Interview practice":"Тренировка собеседований","Flexible schedule":"Гибкий график","Book a session":"Записаться на занятие",
+"Got an idea? Let's build it.":"Есть идея? Давайте сделаем.",
+"I design, build, and ship custom software: websites, web apps, internal tools, and APIs. You get clean code you own and a person who answers your messages.":"Я проектирую, разрабатываю и запускаю софт на заказ: сайты, веб-приложения, внутренние инструменты и API. Вы получаете чистый код, который принадлежит вам, и человека, который отвечает на сообщения.",
+"Websites and web apps":"Сайты и веб-приложения","Automation and internal tools":"Автоматизация и внутренние инструменты","APIs and backends":"API и бэкенды","Fixes, audits, and rescue jobs":"Доработки, аудиты и спасение проектов","Tell me about your project":"Расскажите о проекте",
+"Enjoying the free stuff?":"Нравятся бесплатные материалы?",
+"Buy me a coffee, a pizza, or a new keyboard. Every bit funds more lessons and open projects.":"Угостите меня кофе, пиццей или новой клавиатурой. Каждый вклад идёт на новые уроки и открытые проекты.",
+"Questions, answered.":"Вопросы и ответы.",
+"Do I need experience to start?":"Нужен ли опыт, чтобы начать?","No. Web foundations starts from zero. If you already code, jump to Full-stack builder.":"Нет. «Основы веба» начинаются с нуля. Если вы уже программируете, начните с «Фулстек-разработчика».",
+"How do I enroll or pay?":"Как записаться и оплатить?","Click Enroll, send me the pre-filled email, and I'll reply with a secure payment link and course access.":"Нажмите «Записаться», отправьте мне готовое письмо, и я пришлю безопасную ссылку на оплату и доступ к курсу.",
+"Can you build my project?":"Можете сделать мой проект?","Yes. Send a short description, your budget, and your timeline. I'll reply with questions and an estimate.":"Да. Пришлите краткое описание, бюджет и сроки. Я отвечу с вопросами и оценкой.",
+"Do I own the code?":"Код будет моим?","Yes. Custom work is delivered with full source code and ownership.":"Да. Работа на заказ передаётся с полным исходным кодом и правами на него.",
+"SALO. Built by hand.":"SALO. Сделано вручную."
+};
+const SUB = {"Hello SALO":"Привет, SALO","Course: Web foundations":"Курс: Основы веба","Course: Full-stack builder":"Курс: Фулстек-разработчик","Mentoring session":"Занятие с наставником","Project inquiry":"Запрос по проекту"};
+const meta = document.querySelector("meta[name=description]"), T0 = document.title, M0 = meta.content, orig = new Map();
+function setLang(l) {
+  const ru = l === "ru";
+  document.documentElement.lang = l;
+  const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT), nodes = [];
+  while (w.nextNode()) nodes.push(w.currentNode);
+  nodes.forEach(n => {
+    if (n.parentElement.closest("pre,script,.visual,.marq")) return;
+    if (!orig.has(n)) orig.set(n, n.nodeValue);
+    const o = orig.get(n), k = o.trim();
+    n.nodeValue = ru && RU[k] ? o.replace(k, () => RU[k]) : o;
+  });
+  document.querySelectorAll("[data-mail]").forEach(a => {
+    const s = a.dataset.sub || "Hello SALO";
+    a.href = "mailto:" + CONFIG.email + "?subject=" + encodeURIComponent(ru && SUB[s] ? SUB[s] : s);
+  });
+  document.title = ru ? "SALO - инженер-программист, преподаватель, разработчик" : T0;
+  meta.content = ru ? "Курсы и разработка ПО на заказ от SALO, 30-летнего инженера-программиста." : M0;
+  document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.l === l)));
+  try { localStorage.setItem("lang", l); } catch (e) {}
+}
+document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.l)));
+let saved = "en"; try { saved = localStorage.getItem("lang") || "en"; } catch (e) {}
+setLang(saved === "ru" ? "ru" : "en");
+const emojis = ["☕","🍕","⌨️","✨","🚀","💜"];
+document.querySelectorAll("[data-pay]").forEach(a => {
+  a.href = CONFIG.pay[a.dataset.pay];
+  a.addEventListener("click", e => {
+    const r = a.getBoundingClientRect();
+    for (let i = 0; i < 14; i++) {
+      const s = document.createElement("span");
+      s.className = "pop"; s.textContent = emojis[i % emojis.length];
+      s.style.left = r.left + r.width / 2 + "px"; s.style.top = r.top + "px";
+      s.style.setProperty("--dx", (Math.random() * 360 - 180) + "px");
+      s.style.setProperty("--dy", (-80 - Math.random() * 200) + "px");
+      s.style.setProperty("--r", (Math.random() * 540 - 270) + "deg");
+      document.body.appendChild(s); setTimeout(() => s.remove(), 1300);
+    }
+  });
+});
+/* card spotlight */
+document.querySelectorAll(".card").forEach(c => c.addEventListener("pointermove", e => {
+  const r = c.getBoundingClientRect();
+  c.style.setProperty("--x", e.clientX - r.left + "px"); c.style.setProperty("--y", e.clientY - r.top + "px");
+}));
+/* parallax + 3D tilt */
+const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+if (!still) {
+  const items = [...document.querySelectorAll("[data-p]")];
+  let ticking = false;
+  const run = () => {
+    const y = scrollY;
+    items.forEach(el => {
+      const host = el.closest(".hero");
+      const base = host ? y : (el.parentElement.getBoundingClientRect().top - innerHeight / 2) * -1;
+      el.style.transform = "translateY(" + (base * parseFloat(el.dataset.p)) + "px)";
+    });
+    ticking = false;
+  };
+  addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(run); } }, { passive: true });
+  run();
+  const win = document.getElementById("win"), stage = win.parentElement;
+  stage.addEventListener("pointermove", e => {
+    const r = stage.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+    win.style.transform = "rotateY(" + x * 10 + "deg) rotateX(" + -y * 8 + "deg)";
+  });
+  stage.addEventListener("pointerleave", () => win.style.transform = "");
+}
+</script>
+</body>
+</html>
